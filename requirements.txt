@@ -1,0 +1,17 @@
+# Web framework
+fastapi
+uvicorn[standard]
+
+# Document & Excel handling
+openpyxl
+docxtpl
+
+# File uploads / forms
+python-multipart
+
+# Utilities
+python-dateutil
+pydantic
+
+# Optional but very useful
+python-dotenv

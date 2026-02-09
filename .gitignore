@@ -1,0 +1,16 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# OS
+.DS_Store
+
+# Docs output (your generated files)
+docs/
+output/
+
+.vscode
