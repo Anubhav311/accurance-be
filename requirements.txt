@@ -15,3 +15,6 @@ pydantic
 
 # Optional but very useful
 python-dotenv
+
+pydantic_settings
+pydantic
