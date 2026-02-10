@@ -4,6 +4,7 @@ from docxtpl import DocxTemplate
 from fastapi import FastAPI
 from app.routers.meetings import router as meetings_router
 from app.routers.company import router as company_router
+from app.routers.health import router as health_router
 from fastapi.middleware.cors import CORSMiddleware
 
 from table_builder import build_attendance_table
@@ -18,6 +19,7 @@ from utility_helpers.utility_helprs import (
     build_resolution_subdoc
 )
 
+from conf import settings
 
 # # ---------------------------
 # # Load paths
@@ -209,8 +211,8 @@ from utility_helpers.utility_helprs import (
 app = FastAPI(title="Meeting Document Generator")
 
 origins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
+    settings.origin_localhost,
+    settings.origin_localhost_2
 ]
 
 app.add_middleware(
@@ -222,3 +224,4 @@ app.add_middleware(
 
 app.include_router(meetings_router)
 app.include_router(company_router)
+app.include_router(health_router)

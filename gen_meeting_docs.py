@@ -19,7 +19,7 @@ def gen_meeting_docs():
     # ---------------------------
     # Load paths
     # ---------------------------
-    BASE_DIR = Path("/Users/marve/Desktop/auto")
+    BASE_DIR = Path("/Users/marve/Desktop/accurance-be")
 
     data_path = BASE_DIR / "data" / "data.xlsx"
     output_dir = BASE_DIR / "docs"

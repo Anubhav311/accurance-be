@@ -14,5 +14,6 @@ FastAPI backend to generate meeting-related documents
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 uvicorn main:app --reload
+pythong3 -m uvicorn main:app --reload # use in case of using global environment

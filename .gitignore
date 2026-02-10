@@ -10,7 +10,8 @@ __pycache__/
 .DS_Store
 
 # Docs output (your generated files)
-docs/
+output_docs/
 output/
 
 .vscode
+schema.sql
