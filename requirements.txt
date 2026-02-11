@@ -18,3 +18,8 @@ python-dotenv
 
 pydantic_settings
 pydantic
+
+sqlalchemy[asyncio]
+asyncpg
+alembic
+psycopg[binary]

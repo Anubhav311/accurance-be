@@ -1,8 +1,9 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field
+from pydantic import Field, PostgresDsn
 
 class Settings(BaseSettings):
     cors_origins: str = Field(..., validation_alias="CORS_ORIGINS")
+    database_url: str = Field(..., alias="DATABASE_URL")
 
     @property
     def origins(self) -> list[str]:
