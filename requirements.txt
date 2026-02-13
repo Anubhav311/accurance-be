@@ -23,3 +23,4 @@ sqlalchemy[asyncio]
 asyncpg
 alembic
 psycopg[binary]
+gunicorn

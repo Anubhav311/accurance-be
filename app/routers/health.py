@@ -8,7 +8,7 @@ router = APIRouter()
 
 @router.get("/")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok v2"}
 
 @router.get("/health/db")
 def db_health(db: Session = Depends(get_db)):
