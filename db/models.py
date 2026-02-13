@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import Boolean, ForeignKey, Integer, String, UniqueConstraint
+from sqlalchemy import Boolean, CheckConstraint, ForeignKey, Enum, String, UniqueConstraint
 from db.base import Base
 from datetime import datetime
 from sqlalchemy import DateTime, func
 from sqlalchemy.orm import relationship
+
 
 class User(Base):
     __tablename__ = "users"
@@ -37,7 +38,7 @@ class Company(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     cin: Mapped[str] = mapped_column(String(21), nullable=False, unique=True, index=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
-    company_type: Mapped[str] = mapped_column(String(255), nullable=False)
+    company_type: Mapped[str] = mapped_column(String(20), nullable=False)
     incorporation_date: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     registered_office: Mapped[str] = mapped_column(String(255), nullable=False)
 
@@ -56,6 +57,13 @@ class Company(Base):
         DateTime(timezone=True),
         server_default=func.now(),
         onupdate=func.now(),
+    )
+
+    __table_args__ = (
+        CheckConstraint(
+            "company_type IN ('public', 'private')",
+            name="check_company_type"
+        ),
     )
 
 class CompanyUser(Base):
@@ -132,6 +140,14 @@ class DirectorAppointments(Base):
     )
 
     __table_args__ = (
+        CheckConstraint(
+            "designation IN ('managing director', 'independent director', 'woman director', 'nominee director', 'casual vacancy director')",
+            name="check_director_designation"
+        ),
+    )
+
+
+    __table_args__ = (
         UniqueConstraint("company_id", "director_id", "appointment_date"),
     )
 
@@ -158,6 +174,14 @@ class Meetings(Base):
         server_default=func.now(),
         onupdate=func.now(),
     )
+
+    __table_args__ = (
+        CheckConstraint(
+            "type IN ('annual general meeting', 'extraordinary general meeting', 'board meeting', 'audit committee meeting', 'corporate social responsibility meeting', 'nomination and remuneration committee meeting')",
+            name="check_meeting_type"
+        ),
+    )
+
 
 class DocumentTemplate(Base):
     __tablename__ = "document_templates"
